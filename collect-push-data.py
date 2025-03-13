@@ -9,7 +9,7 @@ destination_url = "https://coral-reef-capstone.vercel.app/api/xml"
 
 # Maximum Backoff Time (10 minutes) to prevent excessive waiting
 MAX_BACKOFF_TIME = 600
-DATA_FOLDER = "/data"
+DATA_FOLDER = "~/data"
 
 # Ensure the data folder exists
 if not os.path.exists(DATA_FOLDER):
