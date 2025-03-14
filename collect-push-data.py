@@ -7,8 +7,6 @@ import requests
 source_url = "http://192.168.2.139/cgi-bin/status.xml"
 destination_url = "https://coral-reef-capstone.vercel.app/api/xml"
 
-# Maximum Backoff Time (10 minutes) to prevent excessive waiting
-MAX_BACKOFF_TIME = 600
 DATA_FOLDER = "~/data"
 
 # Ensure the data folder exists
@@ -49,7 +47,7 @@ def download_xml():
         # Wait before retrying
         print(f"Retrying download in {backoff} seconds...")
         time.sleep(backoff)
-        backoff = min(backoff * 2, MAX_BACKOFF_TIME)  # Exponential backoff
+        backoff = backoff * 2 # Exponential backoff
 
 # Upload XML files, ensuring all stored files get sent in case of an outage
 def upload_pending_files():
@@ -83,7 +81,7 @@ def upload_pending_files():
             # Wait before retrying
             print(f"Retrying upload of {file_name} in {backoff} seconds...")
             time.sleep(backoff)
-            backoff = min(backoff * 2, MAX_BACKOFF_TIME)  # Exponential backoff
+            backoff = min(backoff * 2)  # Exponential backoff
 
 # MAIN LOOP
 while True:
