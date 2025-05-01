@@ -2,6 +2,8 @@
 import os
 import time
 import requests
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 # URLs
 source_url = "http://192.168.2.139/cgi-bin/status.xml"
@@ -85,6 +87,9 @@ def upload_pending_files():
 
 # MAIN LOOP
 while True:
+    current_time = datetime.now(ZoneInfo("America/New_York"))
+    print(current_time.strftime("%Y-%m-%d %H:%M:%S"))
+
     # First, try uploading any stored data files BEFORE downloading new data
     upload_pending_files()
 
